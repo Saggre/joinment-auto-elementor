@@ -109,8 +109,10 @@ class Joinment_Auto_Elementor_Admin {
 	 * @param $template_json
 	 */
 	public function update_elementor_page_json( $page_id, $template_json ) {
-		$elementor_data_id = '_elementor_data';
-		update_post_meta( $page_id, $elementor_data_id, $template_json );
+		update_post_meta( $page_id, '_elementor_data', $template_json );
+		update_post_meta( $page_id, '_elementor_version', '0.4' );
+		update_post_meta( $page_id, '_elementor_template_type', 'post' );
+		update_post_meta( $page_id, '_elementor_edit_mode', 'builder' );
 	}
 
 	/**
