@@ -75,7 +75,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-joinment-auto-elementor.ph
  */
 function run_plugin_name() {
 
-	$plugin = new Auto_Elementor();
+	$plugin = new Joinment_Auto_Elementor();
 	$plugin->run();
 
 }
