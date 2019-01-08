@@ -18,20 +18,48 @@
 		//do_settings_sections( $this->plugin_name );
 
 		?>
-        <div id="universal-message-container">
-            <h2>Universal Message</h2>
+        <div>
+            <h2>Page options</h2>
 
             <div class="options">
                 <p>
-                    <label>What message would you like to display above each post?</label>
+                    <label>Which page would you want to create automatically?</label>
                     <br/>
-                    <input type="text" name="acme-message"
-                           value="<?php echo esc_attr( get_option( 'tutsplus-custom-data' ) ); ?>"
-                    />
+
+					<?php
+					$pages            = get_pages();
+					$front_page_id    = get_option( 'page_on_front' );
+					$selected_page_id = get_option( $this->plugin_name . '-field-page-id', $front_page_id );
+					?>
+
+                    <select name="<?php echo $this->plugin_name ?>-field-page-id">
+						<?php
+						foreach ( $pages as $page ) {
+							?>
+                            <option value="<?php echo $page->ID ?>" <?php echo( $page->ID == $selected_page_id ? "selected" : "" ) ?>>
+								<?php echo $page->post_title ?>
+                            </option>
+							<?php
+						}
+						?>
+                    </select>
                 </p>
+                <p>
+                    <label>What would you like as the main title?</label>
+                    <br/>
+                    <input type="text" name="<?php echo $this->plugin_name ?>-field-title"
+                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-title', 'Title' ) ); ?>"/>
+                </p>
+                <p>
+                    <label>What is the primary color?</label>
+                    <br/>
+                    <input type="text" name="<?php echo $this->plugin_name ?>-field-main-color" class="colorpicker"
+                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-main-color', '#FFFFFF' ) ); ?>"/>
+                </p>
+
             </div><!-- #universal-message-container -->
 		<?php
-		wp_nonce_field( 'acme-settings-save', 'acme-custom-message' );
+		wp_nonce_field( $this->plugin_name . '-settings-save', $this->plugin_name . '-custom-message' );
 		submit_button( 'Save Settings' );
 		?></form>
 </div>

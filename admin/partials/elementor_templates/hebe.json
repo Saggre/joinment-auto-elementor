@@ -384,7 +384,7 @@
               "background_background": "classic",
               "background_color": "#ffffff",
               "hover_background_background": "classic",
-              "hover_background_color": "#ff0000",
+              "hover_background_color": "{{main_color}}",
               "hover_border_width": {
                 "unit": "px",
                 "top": "0",
@@ -825,7 +825,7 @@
               "background_background": "classic",
               "background_color": "#ffffff",
               "hover_background_background": "classic",
-              "hover_background_color": "#7bfbd1",
+              "hover_background_color": "{{main_color}}",
               "hover_border_width": {
                 "unit": "px",
                 "top": "0",
@@ -1361,9 +1361,9 @@
               "text": "LEARN MORE",
               "align": "center",
               "background_background": "classic",
-              "background_color": "#7bfbd1",
+              "background_color": "{{main_color}}",
               "hover_background_background": "classic",
-              "hover_background_color": "#7bfbd1",
+              "hover_background_color": "{{main_color}}",
               "hover_border_width": {
                 "unit": "px",
                 "top": "0",
@@ -1491,7 +1491,7 @@
           },
           "_inline_size": 50.012,
           "background_background": "classic",
-          "background_color": "#7bfbd1",
+          "background_color": "{{main_color}}",
           "_inline_size_tablet": 50,
           "margin_tablet": {
             "unit": "px",
@@ -1692,7 +1692,7 @@
                 "unit": "px",
                 "size": 1
               },
-              "text_hover_color": "#7bfbd1",
+              "text_hover_color": "{{main_color}}",
               "_margin": {
                 "unit": "px",
                 "top": "38",
@@ -2025,9 +2025,9 @@
               "text": "EXPLORE THE FIELD",
               "align": "center",
               "background_background": "classic",
-              "background_color": "#7bfbd1",
+              "background_color": "{{main_color}}",
               "hover_background_background": "classic",
-              "hover_background_color": "#7bfbd1",
+              "hover_background_color": "{{main_color}}",
               "hover_border_width": {
                 "unit": "px",
                 "top": "0",
@@ -2684,7 +2684,7 @@
                 "unit": "px",
                 "size": 1
               },
-              "text_hover_color": "#7bfbd1",
+              "text_hover_color": "{{main_color}}",
               "_margin": {
                 "unit": "px",
                 "top": "38",
@@ -2943,7 +2943,7 @@
       "layout": "full_width",
       "content_position": "middle",
       "structure": "20",
-      "background_color": "#7bfbd1",
+      "background_color": "{{main_color}}",
       "background_size": "auto",
       "background_overlay_background": "classic",
       "background_overlay_opacity": {
@@ -3328,7 +3328,7 @@
                 "unit": "px",
                 "size": 1
               },
-              "text_hover_color": "#7bfbd1",
+              "text_hover_color": "{{main_color}}",
               "_margin": {
                 "unit": "px",
                 "top": "38",

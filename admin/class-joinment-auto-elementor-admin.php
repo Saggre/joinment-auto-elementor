@@ -80,14 +80,38 @@ class Joinment_Auto_Elementor_Admin {
 		}
 
 		// If the above are valid, sanitize and save the option.
-		if ( null !== wp_unslash( $_POST['acme-message'] ) ) {
-
-			$value = $_POST['acme-message'];
-			update_option( 'tutsplus-custom-data', $value );
-
+		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-main-color' ] ) ) {
+			$value = $_POST[ $this->plugin_name . '-field-main-color' ];
+			update_option( $this->plugin_name . '-field-main-color', $value );
 		}
 
+		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-title' ] ) ) {
+			$value = $_POST[ $this->plugin_name . '-field-title' ];
+			update_option( $this->plugin_name . '-field-title', $value );
+		}
+
+		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-page-id' ] ) ) {
+			$value = $_POST[ $this->plugin_name . '-field-page-id' ];
+			update_option( $this->plugin_name . '-field-page-id', $value );
+
+			$selected_post_id = $value;
+			$this->elementor_delete_css( $selected_post_id );
+		}
+
+
 		$this->redirect();
+	}
+
+	/**
+	 * Deletes the old elementor CSS file
+	 */
+	protected function elementor_delete_css( $post_id ) {
+		if ( class_exists( 'Elementor\Core\Files\CSS\Post' ) ) {
+			$post_css = new Elementor\Core\Files\CSS\Post( $post_id );
+			$post_css->delete();
+		} else {
+			//TODO unable to save elementor
+		}
 	}
 
 	/**
@@ -102,12 +126,12 @@ class Joinment_Auto_Elementor_Admin {
 	private function has_valid_nonce() {
 
 		// If the field isn't even in the $_POST, then it's invalid.
-		if ( ! isset( $_POST['acme-custom-message'] ) ) { // Input var okay.
+		if ( ! isset( $_POST[ $this->plugin_name . '-custom-message' ] ) ) { // Input var okay.
 			return false;
 		}
 
-		$field  = wp_unslash( $_POST['acme-custom-message'] );
-		$action = 'acme-settings-save';
+		$field  = wp_unslash( $_POST[ $this->plugin_name . '-custom-message' ] );
+		$action = $this->plugin_name . '-settings-save';
 
 		return wp_verify_nonce( $field, $action );
 
@@ -190,7 +214,12 @@ class Joinment_Auto_Elementor_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/joinment-auto-elementor-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( 'jquery' );
+		wp_enqueue_script( 'jqcolorpicker', plugin_dir_url( __FILE__ ) . 'js/jqColorPicker.min.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/joinment-auto-elementor-admin.js', array(
+			'jquery',
+			'jqcolorpicker'
+		), $this->version, true );
 
 	}
 

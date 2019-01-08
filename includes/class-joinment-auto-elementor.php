@@ -72,7 +72,7 @@ class Joinment_Auto_Elementor {
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'plugin-name';
+		$this->plugin_name = 'joinment-auto-elementor';
 
 		$this->load_dependencies();
 		$this->set_locale();
