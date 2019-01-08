@@ -48,18 +48,72 @@
                     <label>What would you like as the main title?</label>
                     <br/>
                     <input type="text" name="<?php echo $this->plugin_name ?>-field-title"
-                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-title', 'Title' ) ); ?>"/>
+                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-title', 'Tervetuloa' ) ); ?>"/>
+                </p>
+                <p>
+                    <label>Main text area.</label>
+                    <br/>
+                    <textarea rows="5" cols="60" type="text"
+                              name="<?php echo $this->plugin_name ?>-field-primary-text"><?php echo esc_attr( get_option( $this->plugin_name . '-field-primary-text', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' ) ); ?></textarea>
+
+                </p>
+                <p>
+                    <label>First call-to-action?</label>
+                    <br/>
+                    <input type="text" name="<?php echo $this->plugin_name ?>-field-cta1-text"
+                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-cta1-text', 'Tuotteemme' ) ); ?>"/>
+                </p>
+                <p>
+
+                    <label>Second call-to-action?</label>
+                    <br/>
+                    <input type="text" name="<?php echo $this->plugin_name ?>-field-cta2-text"
+                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-cta2-text', 'Lue lisää' ) ); ?>"/>
+
                 </p>
                 <p>
                     <label>What is the primary color?</label>
                     <br/>
-                    <input type="text" name="<?php echo $this->plugin_name ?>-field-main-color" class="colorpicker"
-                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-main-color', '#FFFFFF' ) ); ?>"/>
+                    <input type="text" name="<?php echo $this->plugin_name ?>-field-primary-color" class="colorpicker"
+                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-primary-color', '#FFFFFF' ) ); ?>"/>
+                </p>
+                <p>
+                    <label>What is the secondary color?</label>
+                    <br/>
+                    <input type="text" name="<?php echo $this->plugin_name ?>-field-secondary-color" class="colorpicker"
+                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-secondary-color', '#F2F2F2' ) ); ?>"/>
+                </p>
+                <p>
+                    <label>What is the dark accent color? (hover buttons)</label>
+                    <br/>
+                    <input type="text" name="<?php echo $this->plugin_name ?>-field-dark-color" class="colorpicker"
+                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-dark-color', '#CCCCCC' ) ); ?>"/>
+                </p>
+                <p>
+                    <label>Which template to use?</label>
+                    <br/>
+                    <select name="<?php echo $this->plugin_name ?>-field-template">
+
+						<?php
+						$templates        = $this->get_elementor_templates();
+						$default_template = $templates[0];
+						foreach ( $templates as $template ) {
+							$file = wp_basename( $template );
+							?>
+                            <option value="<?php echo $file ?>" <?php echo( $template == $default_template ? "selected" : "" ) ?>>
+								<?php echo $file ?>
+                            </option>
+							<?php
+						}
+						?>
+
+                    </select>
+
                 </p>
 
             </div><!-- #universal-message-container -->
 		<?php
 		wp_nonce_field( $this->plugin_name . '-settings-save', $this->plugin_name . '-custom-message' );
-		submit_button( 'Save Settings' );
+		submit_button( 'Apply' );
 		?></form>
 </div>

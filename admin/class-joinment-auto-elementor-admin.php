@@ -65,6 +65,54 @@ class Joinment_Auto_Elementor_Admin {
 		) );
 	}
 
+	/** Returns a list of templates
+	 * @return mixed
+	 */
+	public function get_elementor_templates() {
+		$dir = plugin_dir_path( __FILE__ ) . 'partials/elementor_templates/';
+
+		return list_files( $dir );
+
+	}
+
+	/** Replaces raw JSON values
+	 *
+	 * @param $file
+	 * @param $options
+	 */
+	public function get_elementor_template_json( $file, $options ) {
+		$dir = plugin_dir_path( __FILE__ ) . 'partials/elementor_templates/';
+
+		$raw_json = file_get_contents( $dir . $file );
+
+		if ( ! $raw_json ) {
+			//TODO fail
+		}
+
+		// Apply options
+		$cooked_json = strtr( $raw_json, array(
+			'%%title%%'           => $options['title'],
+			'%%primary_text%%'    => $options['primary_text'],
+			'%%primary_color%%'   => $options['primary_color'],
+			'%%secondary_color%%' => $options['secondary_color'],
+			'%%dark_color%%'      => $options['dark_color'],
+			'%%cta1_text%%'       => $options['cta1_text'],
+			'%%cta2_text%%'       => $options['cta2_text'],
+		) );
+
+		return $cooked_json;
+	}
+
+	/** Update the elementor post meta value
+	 *
+	 * @param $page_id
+	 * @param $template_json
+	 */
+	public function update_elementor_page_json( $page_id, $template_json ) {
+		$elementor_data_id = '_elementor_data';
+		update_post_meta( $page_id, $elementor_data_id, $template_json );
+	}
+
 	/**
 	 * Saves
 	 */
@@ -79,23 +127,104 @@ class Joinment_Auto_Elementor_Admin {
 			// TODO: Display an error message.
 		}
 
-		// If the above are valid, sanitize and save the option.
-		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-main-color' ] ) ) {
-			$value = $_POST[ $this->plugin_name . '-field-main-color' ];
-			update_option( $this->plugin_name . '-field-main-color', $value );
-		}
+		/**
+		 * Defaults
+		 */
+		$template_options = array(
+			'title'           => 'Tervetuloa',
+			'primary_text'    => 'Lorem ipsum',
+			'primary_color'   => '#ff0000',
+			'secondary_color' => '#ff00ff',
+			'dark_color'      => '#2f2f2f',
+			'cta1_text'       => 'Tuotteemme',
+			'cta2_text'       => 'Lue lisää'
+		);
+
+		//print_r( $_POST );
 
 		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-title' ] ) ) {
 			$value = $_POST[ $this->plugin_name . '-field-title' ];
-			update_option( $this->plugin_name . '-field-title', $value );
+
+			$template_options['title'] = $value;
+			//update_option( $this->plugin_name . '-field-title', $value );
 		}
 
+		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-primary-text' ] ) ) {
+			$value = $_POST[ $this->plugin_name . '-field-primary-text' ];
+
+			$template_options['primary_text'] = $value;
+			//update_option( $this->plugin_name . '-field-title', $value );
+		}
+
+		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-primary-color' ] ) ) {
+			$value = $_POST[ $this->plugin_name . '-field-primary-color' ];
+
+			$template_options['primary_color'] = $value;
+
+			//update_option( $this->plugin_name . '-field-main-color', $value );
+		}
+
+		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-secondary-color' ] ) ) {
+			$value = $_POST[ $this->plugin_name . '-field-secondary-color' ];
+
+			$template_options['secondary_color'] = $value;
+
+			//update_option( $this->plugin_name . '-field-main-color', $value );
+		}
+
+		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-dark-color' ] ) ) {
+			$value = $_POST[ $this->plugin_name . '-field-dark-color' ];
+
+			$template_options['dark_color'] = $value;
+
+			//update_option( $this->plugin_name . '-field-main-color', $value );
+		}
+
+		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-cta1-text' ] ) ) {
+			$value = $_POST[ $this->plugin_name . '-field-cta1-text' ];
+
+			$template_options['cta1_text'] = $value;
+
+			//update_option( $this->plugin_name . '-field-main-color', $value );
+		}
+
+		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-cta2-text' ] ) ) {
+			$value = $_POST[ $this->plugin_name . '-field-cta2-text' ];
+
+			$template_options['cta2_text'] = $value;
+
+			//update_option( $this->plugin_name . '-field-main-color', $value );
+		}
+
+
+		$selected_page_id = null;
+
+		/**
+		 * The page to modify
+		 */
 		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-page-id' ] ) ) {
 			$value = $_POST[ $this->plugin_name . '-field-page-id' ];
 			update_option( $this->plugin_name . '-field-page-id', $value );
 
-			$selected_post_id = $value;
-			$this->elementor_delete_css( $selected_post_id );
+			$selected_page_id = $value;
+			$this->elementor_delete_css( $selected_page_id );
+		}
+
+		/**
+		 * The template to use
+		 */
+		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-template' ] ) ) {
+			$value = $_POST[ $this->plugin_name . '-field-template' ];
+
+			if ( isset( $selected_page_id ) ) {
+
+
+				$template_json = $this->get_elementor_template_json( $value, $template_options );
+
+				print_r( $template_json );
+
+				$this->update_elementor_page_json( $selected_page_id, $template_json );
+			}
 		}
 
 
