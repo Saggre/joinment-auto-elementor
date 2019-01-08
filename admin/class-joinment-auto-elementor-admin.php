@@ -221,14 +221,62 @@ class Joinment_Auto_Elementor_Admin {
 
 				$template_json = $this->get_elementor_template_json( $value, $template_options );
 
-				print_r( $template_json );
+				//print_r( $template_json );
 
 				$this->update_elementor_page_json( $selected_page_id, $template_json );
 			}
 		}
 
+		$check = getimagesize( $_FILES[ $this->plugin_name . '-image-cover' ]["tmp_name"] );
+		if ( $check !== false ) {
+			$image_data = file_get_contents( $_FILES[ $this->plugin_name . '-image-cover' ]["tmp_name"] );
+			$image_name = $_FILES[ $this->plugin_name . '-image-cover' ]["name"];
+			echo "File is an image - " . $check["mime"] . ".";
+			$this->upload_to_media_library( $image_data, $image_name );
+			$uploadOk = 1;
+		} else {
+			echo "File is not an image.";
+			$uploadOk = 0;
+		}
 
-		$this->redirect();
+
+		//$this->redirect();
+	}
+
+	/** Uploads a file straight to wordpress media library
+	 *
+	 * @param $image_data
+	 * @param $image_name
+	 */
+	protected function upload_to_media_library( $image_data, $image_name ) {
+		$upload_dir = wp_upload_dir();
+
+		$filename = $image_name;
+
+		if ( wp_mkdir_p( $upload_dir['path'] ) ) {
+			$file = $upload_dir['path'] . '/' . $filename;
+		} else {
+			$file = $upload_dir['basedir'] . '/' . $filename;
+		}
+
+		file_put_contents( $file, $image_data );
+
+		$wp_filetype = wp_check_filetype( $filename, null );
+
+		$attachment = array(
+			'post_mime_type' => $wp_filetype['type'],
+			'post_title'     => sanitize_file_name( $filename ),
+			'post_content'   => '',
+			'post_status'    => 'inherit'
+		);
+
+		$attach_id = wp_insert_attachment( $attachment, $file );
+		require_once( ABSPATH . 'wp-admin/includes/image.php' );
+		$attach_data = wp_generate_attachment_metadata( $attach_id, $file );
+		wp_update_attachment_metadata( $attach_id, $attach_data );
+
+		$image_path = $upload_dir['baseurl'] . '/' . $attach_data["file"];
+		echo $image_path;
 	}
 
 	/**

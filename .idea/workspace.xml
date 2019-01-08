@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82dc184a-f054-4eb1-82cd-bd7b851b97ec" name="Default Changelist" comment="Develop">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/class-joinment-auto-elementor-admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/class-joinment-auto-elementor-admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/partials/class-joinment-auto-elementor-templates.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/partials/elementor_templates/hebe.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/partials/elementor_templates/main.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/partials/joinment-auto-elementor-admin-page.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/partials/joinment-auto-elementor-admin-page.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,11 +22,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin/class-joinment-auto-elementor-admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="94" column="55" lean-forward="true" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="55" />
+            <state relative-caret-position="341">
+              <caret line="277" column="39" selection-start-line="277" selection-start-column="39" selection-end-line="277" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -37,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/partials/joinment-auto-elementor-admin-page.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="87" column="25" lean-forward="true" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
+            <state relative-caret-position="311">
+              <caret line="114" column="19" lean-forward="true" selection-start-line="114" selection-start-column="19" selection-end-line="114" selection-end-column="19" />
               <folding>
                 <element signature="e#6#260#0#PHP" expanded="true" />
               </folding>
@@ -46,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/partials/elementor_templates/main.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="1051" column="39" lean-forward="true" selection-start-line="1051" selection-start-column="39" selection-end-line="1051" selection-end-column="39" />
+            <state relative-caret-position="171">
+              <caret line="1047" column="32" lean-forward="true" selection-start-line="1047" selection-start-column="32" selection-end-line="1047" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -58,8 +55,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/js/joinment-auto-elementor-admin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+            <state relative-caret-position="240">
+              <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -102,7 +99,6 @@
       <find>ff0000</find>
       <find>00ff00</find>
       <find>#7BFBD1</find>
-      <find>add_me</find>
       <find>home-bg</find>
       <find>0.6</find>
       <find>#e2b3f8</find>
@@ -113,16 +109,18 @@
       <find>&lt;p&gt;</find>
       <find>#c671f5</find>
       <find>#afa5c9</find>
+      <find>00a0</find>
       <find>$$</find>
+      <find>add_me</find>
     </findStrings>
     <replaceStrings>
       <replace>{{main_color}}</replace>
       <replace>{{secondary_color}}</replace>
-      <replace>class-joinment-auto-elementor</replace>
       <replace>ö</replace>
       <replace>%%secondary_color%%</replace>
       <replace>%%dark_color%%</replace>
       <replace>%%</replace>
+      <replace>class-joinment-auto-elementor</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -147,9 +145,9 @@
         <option value="$PROJECT_DIR$/includes/elementor_data/hebe.json" />
         <option value="$PROJECT_DIR$/admin/partials/class-joinment-auto-elementor-templates.php" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.json" />
+        <option value="$PROJECT_DIR$/admin/partials/elementor_templates/main.json" />
         <option value="$PROJECT_DIR$/admin/partials/joinment-auto-elementor-admin-page.php" />
         <option value="$PROJECT_DIR$/admin/class-joinment-auto-elementor-admin.php" />
-        <option value="$PROJECT_DIR$/admin/partials/elementor_templates/main.json" />
       </list>
     </option>
   </component>
@@ -280,7 +278,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1546910235856</updated>
-      <workItem from="1546910237109" duration="28339000" />
+      <workItem from="1546910237109" duration="30883000" />
     </task>
     <task id="LOCAL-00001" summary="Develop">
       <created>1546910928464</created>
@@ -293,7 +291,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28339000" />
+    <option name="totallyTimeSpent" value="30883000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1293" height="693" extended-state="6" />
@@ -460,13 +458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/class-joinment-auto-elementor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1632">
-          <caret line="74" column="53" selection-start-line="74" selection-start-column="53" selection-end-line="74" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/elementor_data/hebe.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
@@ -488,13 +479,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/joinment-auto-elementor-admin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-561">
@@ -502,27 +486,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/admin/partials/elementor_templates/main.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="1047" column="32" lean-forward="true" selection-start-line="1047" selection-start-column="32" selection-end-line="1047" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/joinment-auto-elementor-admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/web-forms2.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="604" column="16" selection-start-line="604" selection-start-column="16" selection-end-line="604" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/class-joinment-auto-elementor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1632">
+          <caret line="74" column="53" selection-start-line="74" selection-start-column="53" selection-end-line="74" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/admin/partials/joinment-auto-elementor-admin-page.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="87" column="25" lean-forward="true" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
+        <state relative-caret-position="311">
+          <caret line="114" column="19" lean-forward="true" selection-start-line="114" selection-start-column="19" selection-end-line="114" selection-end-column="19" />
           <folding>
             <element signature="e#6#260#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/class-joinment-auto-elementor-admin.php">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/superglobals/_superglobals.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="94" column="55" lean-forward="true" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="55" />
+        <state relative-caret-position="178">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/partials/elementor_templates/main.json">
+    <entry file="file://$PROJECT_DIR$/admin/class-joinment-auto-elementor-admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="1051" column="39" lean-forward="true" selection-start-line="1051" selection-start-column="39" selection-end-line="1051" selection-end-column="39" />
+        <state relative-caret-position="341">
+          <caret line="277" column="39" selection-start-line="277" selection-start-column="39" selection-end-line="277" selection-end-column="39" />
         </state>
       </provider>
     </entry>

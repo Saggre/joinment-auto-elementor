@@ -13,7 +13,8 @@
 ?>
 <div class="wrap">
     <h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
-    <form method="post" action="<?php echo esc_html( admin_url( 'admin-post.php' ) ); ?>"><?php
+    <form enctype="multipart/form-data" method="post"
+          action="<?php echo esc_html( admin_url( 'admin-post.php' ) ); ?>"><?php
 		//settings_fields( $this->plugin_name . '-options' );
 		//do_settings_sections( $this->plugin_name );
 
@@ -75,19 +76,19 @@
                     <label>What is the primary color?</label>
                     <br/>
                     <input type="text" name="<?php echo $this->plugin_name ?>-field-primary-color" class="colorpicker"
-                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-primary-color', '#FFFFFF' ) ); ?>"/>
+                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-primary-color', '#FF0000' ) ); ?>"/>
                 </p>
                 <p>
                     <label>What is the secondary color?</label>
                     <br/>
                     <input type="text" name="<?php echo $this->plugin_name ?>-field-secondary-color" class="colorpicker"
-                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-secondary-color', '#F2F2F2' ) ); ?>"/>
+                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-secondary-color', '#FF00FF' ) ); ?>"/>
                 </p>
                 <p>
                     <label>What is the dark accent color? (hover buttons)</label>
                     <br/>
                     <input type="text" name="<?php echo $this->plugin_name ?>-field-dark-color" class="colorpicker"
-                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-dark-color', '#CCCCCC' ) ); ?>"/>
+                           value="<?php echo esc_attr( get_option( $this->plugin_name . '-field-dark-color', '#2F2F2F' ) ); ?>"/>
                 </p>
                 <p>
                     <label>Which template to use?</label>
@@ -109,6 +110,12 @@
 
                     </select>
 
+                </p>
+
+                <p>
+                    <label>Cover image</label>
+                    <br/>
+                    <input type="file" name="<?php echo $this->plugin_name ?>-image-cover">
                 </p>
 
             </div><!-- #universal-message-container -->
