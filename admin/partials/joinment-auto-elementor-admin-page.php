@@ -25,7 +25,9 @@
                 <p>
                     <label>What message would you like to display above each post?</label>
                     <br/>
-                    <input type="text" name="acme-message" value=""/>
+                    <input type="text" name="acme-message"
+                           value="<?php echo esc_attr( get_option( 'tutsplus-custom-data' ) ); ?>"
+                    />
                 </p>
             </div><!-- #universal-message-container -->
 		<?php
