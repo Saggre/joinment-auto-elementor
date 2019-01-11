@@ -28,7 +28,7 @@
       ],
       "background_background": "classic",
       "background_image": {
-        "url": "https://demos.artbees.net/jupiterx/osogoa/wp-content/uploads/sites/63/2018/09/home-head-3.jpg",
+        "url": "%%image_cover%%",
         "id": 53
       },
       "padding": {

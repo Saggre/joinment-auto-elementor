@@ -98,6 +98,7 @@ class Joinment_Auto_Elementor_Admin {
 			'%%dark_color%%'      => $options['dark_color'],
 			'%%cta1_text%%'       => $options['cta1_text'],
 			'%%cta2_text%%'       => $options['cta2_text'],
+			'%%image_cover%%'     => $options['image_cover'],
 		) );
 
 		return $cooked_json;
@@ -139,7 +140,8 @@ class Joinment_Auto_Elementor_Admin {
 			'secondary_color' => '#ff00ff',
 			'dark_color'      => '#2f2f2f',
 			'cta1_text'       => 'Tuotteemme',
-			'cta2_text'       => 'Lue lisää'
+			'cta2_text'       => 'Lue lisää',
+			'image_cover'     => 'https://picsum.photos/1920/1080'
 		);
 
 		//print_r( $_POST );
@@ -148,14 +150,16 @@ class Joinment_Auto_Elementor_Admin {
 			$value = $_POST[ $this->plugin_name . '-field-title' ];
 
 			$template_options['title'] = $value;
-			//update_option( $this->plugin_name . '-field-title', $value );
+
+			update_option( $this->plugin_name . '-field-title', $value );
 		}
 
 		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-primary-text' ] ) ) {
 			$value = $_POST[ $this->plugin_name . '-field-primary-text' ];
 
 			$template_options['primary_text'] = $value;
-			//update_option( $this->plugin_name . '-field-title', $value );
+
+			update_option( $this->plugin_name . '-field-primary-text', $value );
 		}
 
 		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-primary-color' ] ) ) {
@@ -163,7 +167,7 @@ class Joinment_Auto_Elementor_Admin {
 
 			$template_options['primary_color'] = $value;
 
-			//update_option( $this->plugin_name . '-field-main-color', $value );
+			update_option( $this->plugin_name . '-field-primary-color', $value );
 		}
 
 		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-secondary-color' ] ) ) {
@@ -171,7 +175,7 @@ class Joinment_Auto_Elementor_Admin {
 
 			$template_options['secondary_color'] = $value;
 
-			//update_option( $this->plugin_name . '-field-main-color', $value );
+			update_option( $this->plugin_name . '-field-secondary-color', $value );
 		}
 
 		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-dark-color' ] ) ) {
@@ -179,7 +183,7 @@ class Joinment_Auto_Elementor_Admin {
 
 			$template_options['dark_color'] = $value;
 
-			//update_option( $this->plugin_name . '-field-main-color', $value );
+			update_option( $this->plugin_name . '-field-dark-color', $value );
 		}
 
 		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-cta1-text' ] ) ) {
@@ -187,7 +191,7 @@ class Joinment_Auto_Elementor_Admin {
 
 			$template_options['cta1_text'] = $value;
 
-			//update_option( $this->plugin_name . '-field-main-color', $value );
+			update_option( $this->plugin_name . '-field-cta1_text', $value );
 		}
 
 		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-cta2-text' ] ) ) {
@@ -195,17 +199,34 @@ class Joinment_Auto_Elementor_Admin {
 
 			$template_options['cta2_text'] = $value;
 
-			//update_option( $this->plugin_name . '-field-main-color', $value );
+			update_option( $this->plugin_name . '-field-cta2-text', $value );
 		}
 
 
 		$selected_page_id = null;
 
 		/**
-		 * The page to modify
+		 * Cover image
+		 */
+		$check = getimagesize( $_FILES[ $this->plugin_name . '-image-cover' ]["tmp_name"] );
+		if ( $check !== false ) {
+			$image_data = file_get_contents( $_FILES[ $this->plugin_name . '-image-cover' ]["tmp_name"] );
+			$image_name = $_FILES[ $this->plugin_name . '-image-cover' ]["name"];
+			//echo "File is an image - " . $check["mime"] . ".";
+			$image_url = $this->upload_to_media_library( $image_data, $image_name );
+			print $image_url;
+
+			$template_options['image_cover'] = $image_url;
+		} else {
+			//TODO fail
+		}
+
+		/**
+		 * The page to modify. Deletes elementor css
 		 */
 		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-page-id' ] ) ) {
 			$value = $_POST[ $this->plugin_name . '-field-page-id' ];
+
 			update_option( $this->plugin_name . '-field-page-id', $value );
 
 			$selected_page_id = $value;
@@ -213,39 +234,26 @@ class Joinment_Auto_Elementor_Admin {
 		}
 
 		/**
-		 * The template to use
+		 * The template to use. Last check
 		 */
 		if ( null !== wp_unslash( $_POST[ $this->plugin_name . '-field-template' ] ) ) {
 			$value = $_POST[ $this->plugin_name . '-field-template' ];
 
 			if ( isset( $selected_page_id ) ) {
 
-
 				$template_json = $this->get_elementor_template_json( $value, $template_options );
 
 				//print_r( $template_json );
 
+				// Start template creation process
 				$this->update_elementor_page_json( $selected_page_id, $template_json );
 			}
 		}
 
-		$check = getimagesize( $_FILES[ $this->plugin_name . '-image-cover' ]["tmp_name"] );
-		if ( $check !== false ) {
-			$image_data = file_get_contents( $_FILES[ $this->plugin_name . '-image-cover' ]["tmp_name"] );
-			$image_name = $_FILES[ $this->plugin_name . '-image-cover' ]["name"];
-			echo "File is an image - " . $check["mime"] . ".";
-			$this->upload_to_media_library( $image_data, $image_name );
-			$uploadOk = 1;
-		} else {
-			echo "File is not an image.";
-			$uploadOk = 0;
-		}
-
-
-		//$this->redirect();
+		$this->redirect();
 	}
 
-	/** Uploads a file straight to wordpress media library
+	/** Uploads a file straight to wordpress media library and returns the url to it
 	 *
 	 * @param $image_data
 	 * @param $image_name
@@ -271,14 +279,15 @@ class Joinment_Auto_Elementor_Admin {
 			'post_content'   => '',
 			'post_status'    => 'inherit'
 		);
-
+		//TODO check
 		$attach_id = wp_insert_attachment( $attachment, $file );
 		require_once( ABSPATH . 'wp-admin/includes/image.php' );
 		$attach_data = wp_generate_attachment_metadata( $attach_id, $file );
 		wp_update_attachment_metadata( $attach_id, $attach_data );
 
 		$image_path = $upload_dir['baseurl'] . '/' . $attach_data["file"];
-		echo $image_path;
+
+		return $image_path;
 	}
 
 	/**
