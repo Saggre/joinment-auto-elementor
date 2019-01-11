@@ -158,7 +158,9 @@ class Joinment_Auto_Elementor {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
-		$this->loader->add_action( 'admin_post', $plugin_admin, 'save' );
+		$this->loader->add_action( 'admin_post', $plugin_admin, 'save_template' );
+
+		$this->loader->add_action( 'parse_request', $plugin_admin, 'api_request' );
 	}
 
 	/**

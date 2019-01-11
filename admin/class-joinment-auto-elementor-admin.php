@@ -55,6 +55,19 @@ class Joinment_Auto_Elementor_Admin {
 
 	}
 
+	public function api_request() {
+		// TODO api_url
+		$api_url = '/malli/automaatti/joinment-auto-elementor-api';
+		if ( $_SERVER["REQUEST_URI"] == $api_url ) {
+
+			$this->save_template();
+
+		} else {
+			echo "Invalid request";
+			exit();
+		}
+	}
+
 	/**
 	 * Adds the menu
 	 */
@@ -72,7 +85,6 @@ class Joinment_Auto_Elementor_Admin {
 		$dir = plugin_dir_path( __FILE__ ) . 'partials/elementor_templates/';
 
 		return list_files( $dir );
-
 	}
 
 	/** Replaces raw JSON values
@@ -104,6 +116,21 @@ class Joinment_Auto_Elementor_Admin {
 		return $cooked_json;
 	}
 
+	private function get_default_template_options() {
+		return array(
+			'title'              => 'Tervetuloa',
+			'primary_text'       => 'Lorem ipsum',
+			'primary_color'      => '#ff0000',
+			'secondary_color'    => '#ff00ff',
+			'dark_color'         => '#2f2f2f',
+			'cta1_text'          => 'Tuotteemme',
+			'cta2_text'          => 'Lue lisää',
+			'image_cover'        => 'https://picsum.photos/1920/1080',
+			'image_square'       => 'https://picsum.photos/960',
+			'image_second_cover' => 'https://picsum.photos/1920/1080'
+		);
+	}
+
 	/** Update the elementor post meta value
 	 *
 	 * @param $page_id
@@ -119,32 +146,22 @@ class Joinment_Auto_Elementor_Admin {
 	/**
 	 * Saves
 	 */
-	public function save() {
+	public function save_template() {
 
 		// First, validate the nonce.
 		// Secondly, verify the user has permission to save.
 		// If the above are valid, save the option.
 
 		// First, validate the nonce and verify the user as permission to save.
-		if ( ! ( $this->has_valid_nonce() && current_user_can( 'manage_options' ) ) ) {
-			// TODO: Display an error message.
-		}
+		//TODO security checks
+		//if ( ! ( $this->has_valid_nonce() && current_user_can( 'manage_options' ) ) ) {
+		// TODO: Display an error message.
+		//}
 
 		/**
 		 * Defaults
 		 */
-		$template_options = array(
-			'title'              => 'Tervetuloa',
-			'primary_text'       => 'Lorem ipsum',
-			'primary_color'      => '#ff0000',
-			'secondary_color'    => '#ff00ff',
-			'dark_color'         => '#2f2f2f',
-			'cta1_text'          => 'Tuotteemme',
-			'cta2_text'          => 'Lue lisää',
-			'image_cover'        => 'https://picsum.photos/1920/1080',
-			'image_square'       => 'https://picsum.photos/960',
-			'image_second_cover' => 'https://picsum.photos/1920/1080'
-		);
+		$template_options = $this->get_default_template_options();
 
 		//print_r( $_POST );
 
