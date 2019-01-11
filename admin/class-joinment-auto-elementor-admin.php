@@ -134,14 +134,16 @@ class Joinment_Auto_Elementor_Admin {
 		 * Defaults
 		 */
 		$template_options = array(
-			'title'           => 'Tervetuloa',
-			'primary_text'    => 'Lorem ipsum',
-			'primary_color'   => '#ff0000',
-			'secondary_color' => '#ff00ff',
-			'dark_color'      => '#2f2f2f',
-			'cta1_text'       => 'Tuotteemme',
-			'cta2_text'       => 'Lue lisää',
-			'image_cover'     => 'https://picsum.photos/1920/1080'
+			'title'              => 'Tervetuloa',
+			'primary_text'       => 'Lorem ipsum',
+			'primary_color'      => '#ff0000',
+			'secondary_color'    => '#ff00ff',
+			'dark_color'         => '#2f2f2f',
+			'cta1_text'          => 'Tuotteemme',
+			'cta2_text'          => 'Lue lisää',
+			'image_cover'        => 'https://picsum.photos/1920/1080',
+			'image_square'       => 'https://picsum.photos/960',
+			'image_second_cover' => 'https://picsum.photos/1920/1080'
 		);
 
 		//print_r( $_POST );
@@ -208,13 +210,13 @@ class Joinment_Auto_Elementor_Admin {
 		/**
 		 * Cover image
 		 */
-		$check = getimagesize( $_FILES[ $this->plugin_name . '-image-cover' ]["tmp_name"] );
-		if ( $check !== false ) {
+		if ( getimagesize( $_FILES[ $this->plugin_name . '-image-cover' ]["tmp_name"] ) !== false ) {
 			$image_data = file_get_contents( $_FILES[ $this->plugin_name . '-image-cover' ]["tmp_name"] );
 			$image_name = $_FILES[ $this->plugin_name . '-image-cover' ]["name"];
-			//echo "File is an image - " . $check["mime"] . ".";
+
+			// TODO do I have to check mime
+
 			$image_url = $this->upload_to_media_library( $image_data, $image_name );
-			print $image_url;
 
 			$template_options['image_cover'] = $image_url;
 		} else {
